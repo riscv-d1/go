@@ -244,8 +244,8 @@
 // Rotates.
 (RotateLeft8  <t> x (MOVDconst [c])) => (Or8  (Lsh8x64  <t> x (MOVDconst [c&7]))  (Rsh8Ux64  <t> x (MOVDconst [-c&7])))
 (RotateLeft16 <t> x (MOVDconst [c])) => (Or16 (Lsh16x64 <t> x (MOVDconst [c&15])) (Rsh16Ux64 <t> x (MOVDconst [-c&15])))
-(RotateLeft32 <t> x (MOVDconst [c])) => (Or32 (Lsh32x64 <t> x (MOVDconst [c&31])) (Rsh32Ux64 <t> x (MOVDconst [-c&31])))
-(RotateLeft64 <t> x (MOVDconst [c])) => (Or64 (Lsh64x64 <t> x (MOVDconst [c&63])) (Rsh64Ux64 <t> x (MOVDconst [-c&63])))
+(RotateLeft32 <t> x (MOVDconst [c])) => (SRRIW [-c&31] x)
+(RotateLeft64 <t> x (MOVDconst [c])) => (SRRI  [-c&63] x)
 
 (Less64  ...) => (SLT  ...)
 (Less32  x y) => (SLT  (SignExt32to64 x) (SignExt32to64 y))
@@ -756,6 +756,10 @@
 // SLTI/SLTIU with constants.
 (SLTI  [x] (MOVDconst [y])) => (MOVDconst [b2i(int64(y) < int64(x))])
 (SLTIU [x] (MOVDconst [y])) => (MOVDconst [b2i(uint64(y) < uint64(x))])
+
+// SRRI/SRRIW
+(OR (SLLI <typ.UInt32> [c1] x) (SRLI <typ.UInt32> [c2] (MOVWUreg x))) && c1+c2==32 => (SRRIW [c2] x)
+(OR (SLLI [c1] x) (SRLI [c2] x)) && c1+c2==64 => (SRRI [c2] x)
 
 // Merge negation into fused multiply-add and multiply-subtract.
 //

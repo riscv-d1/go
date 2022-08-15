@@ -356,6 +356,7 @@ func ssaGenValue(s *ssagen.State, v *ssa.Value) {
 		p.To.Reg = v.Reg()
 	case ssa.OpRISCV64ADDI, ssa.OpRISCV64ADDIW, ssa.OpRISCV64XORI, ssa.OpRISCV64ORI, ssa.OpRISCV64ANDI,
 		ssa.OpRISCV64SLLI, ssa.OpRISCV64SRAI, ssa.OpRISCV64SRLI, ssa.OpRISCV64SLTI,
+		ssa.OpRISCV64SRRI, ssa.OpRISCV64SRRIW,
 		ssa.OpRISCV64SLTIU:
 		p := s.Prog(v.Op.Asm())
 		p.From.Type = obj.TYPE_CONST
