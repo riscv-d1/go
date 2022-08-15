@@ -256,5 +256,7 @@ var Anames = []string{
 	"NOT",
 	"SEQZ",
 	"SNEZ",
+	"SRRI",
+	"SRRIW",
 	"LAST",
 }

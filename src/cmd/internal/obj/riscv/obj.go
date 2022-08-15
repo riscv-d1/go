@@ -1601,6 +1601,10 @@ var encodings = [ALAST & obj.AMask]encoding{
 	// Escape hatch
 	AWORD & obj.AMask: rawEncoding,
 
+	// C906 Extension Instructions
+	ASRRI & obj.AMask:  iIEncoding,
+	ASRRIW & obj.AMask: iIEncoding,
+
 	// Pseudo-operations
 	obj.AFUNCDATA: pseudoOpEncoding,
 	obj.APCDATA:   pseudoOpEncoding,

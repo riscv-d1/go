@@ -405,3 +405,6 @@ start:
 	FLTD	F0, F1, X5				// d39200a2
 	FLED	F0, F1, X5				// d38200a2
 	FEQD	F0, F1, X5				// d3a200a2
+
+	SRRI	$1, X5, X6				// 0b931210
+	SRRIW	$1, X5, X6				// 0b931214

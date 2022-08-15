@@ -611,6 +611,10 @@ const (
 	ASEQZ
 	ASNEZ
 
+	// C906 Extension Instructions
+	ASRRI
+	ASRRIW
+
 	// End marker
 	ALAST
 )
