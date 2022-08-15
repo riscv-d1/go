@@ -53,14 +53,14 @@ func f1() {
 
 func f2() {
 	var (
-		intp       *int
-		arrayp     *[10]int
-		array0p    *[0]int
-		bigarrayp  *[1 << 20]int
-		structp    *Struct
-		bigstructp *BigStruct
-		emptyp     *Empty
-		empty1p    *Empty1
+		intp       = new(*int)
+		arrayp     = new(*[10]int)
+		array0p    = new(*[0]int)
+		bigarrayp  = new(*[1 << 20]int)
+		structp    = new(*Struct)
+		bigstructp = new(*BigStruct)
+		emptyp     = new(*Empty)
+		empty1p    = new(*Empty1)
 	)
 
 	_ = *intp       // ERROR "nil check"

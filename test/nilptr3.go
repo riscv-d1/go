@@ -1,7 +1,7 @@
 // errorcheck -0 -d=nil
 
-// +build !wasm
-// +build !aix
+//go:build !wasm && !aix
+// +build !wasm,!aix
 
 // Copyright 2013 The Go Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style
@@ -64,14 +64,14 @@ func f1() {
 
 func f2() {
 	var (
-		intp       *int
-		arrayp     *[10]int
-		array0p    *[0]int
-		bigarrayp  *[1 << 20]int
-		structp    *Struct
-		bigstructp *BigStruct
-		emptyp     *Empty
-		empty1p    *Empty1
+		intp       = new(*int)
+		arrayp     = new(*[10]int)
+		array0p    = new(*[0]int)
+		bigarrayp  = new(*[1 << 20]int)
+		structp    = new(*Struct)
+		bigstructp = new(*BigStruct)
+		emptyp     = new(*Empty)
+		empty1p    = new(*Empty1)
 	)
 
 	_ = *intp       // ERROR "generated nil check"
